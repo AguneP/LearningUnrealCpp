@@ -23,8 +23,6 @@ void ASpawnLevel::BeginPlay()
 	// Gera os 4 primeiros levels
 	SpawnLevel(true);
 	SpawnLevel(false);
-	SpawnLevel(false);
-	SpawnLevel(false);
 	
 }
 
@@ -82,6 +80,8 @@ void ASpawnLevel::SpawnLevel(bool IsFirst)
 
 	LevelList.Add(NewLevel);
 	if (LevelList.Num() > 5) {
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, FString::Printf(TEXT("%s"), *LevelList[0]->GetName()));
+		LevelList[0]->Destroy();
 		LevelList.RemoveAt(0);
 	}
 
